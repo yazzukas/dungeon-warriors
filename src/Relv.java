@@ -1,4 +1,3 @@
-package Mäng;
 
 public class Relv {
     private int tugevus;
