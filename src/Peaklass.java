@@ -1,4 +1,3 @@
-package Mäng;
 
 import java.util.Scanner;
 
@@ -26,12 +25,6 @@ public class Peaklass {
         else if (valik == 2) { return new Mängija(60, 85, 40, "Täpne Legolas",0);}
         else { return new Mängija(40, 60, 80, "Hiiliv Silver",0);}
 
-    }
-    public static void Menüü(Pood pood, Mängija mängija){
-        //int valik = Skänner(4);
-        //if(valik == 1){võitluse meetodi käivitamine}
-        //else if(valik == 2){pood.Kuva(mängija);}
-        //else if(valik == 3){....
     }
     public static void main(String[] args) {
     Mängija mängija = Intro();
