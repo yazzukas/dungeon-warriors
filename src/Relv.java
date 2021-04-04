@@ -20,11 +20,6 @@ public class Relv {
     public String getNimi() { return nimi; }
     public int getHind() { return hind; }
 
-    public void setTugevus(int tugevus) { this.tugevus = tugevus; }
-    public void setTäpsus(int täpsus) { this.täpsus = täpsus; }
-    public void setKaitse(int kaitse) { this.kaitse = kaitse; }
-    public void setHind(int hind) { this.hind = hind; }
-
     public String toString() {
         return nimi+" "+tugevus+" "+täpsus+" "+kaitse+" "+hind;
     }
