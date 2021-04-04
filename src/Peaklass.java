@@ -1,8 +1,6 @@
-
-
 public class Peaklass {
 
-    public static void introTekst() {
+    public static void väljastaInformatsioon() {
         System.out.println("Tere tulemast mängu X. Mängu alustamiseks vali endale mängija. " +
                 "Valimiseks vajuta vastavat numbri");
         System.out.println("Mängijad:" + "\n" + "1. Tugev Madis \n" + "2. Täpne Legolas \n" + "3. Hiiliv Silver");
@@ -17,7 +15,7 @@ public class Peaklass {
     }
 
     public static void main(String[] args) {
-        introTekst();
+        väljastaInformatsioon();
 
         Mängija mängija = mängijaValik();
         Relva_valimine relva_valimine = new Relva_valimine();
