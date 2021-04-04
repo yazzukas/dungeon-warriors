@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 
@@ -7,18 +6,6 @@ public class Relva_valimine {
 
     private Mängija uus_mängija;
     private Mängija intro_mängija;
-
-    public int Skänner(int valikute_arv) {
-        while (true) {
-            Scanner valik = new Scanner(System.in);
-            if (valik.hasNextInt()) {
-                int nr = valik.nextInt();
-                if (nr <= valikute_arv && nr >= 0) {
-                    return nr;
-                } else System.out.println("Sisesta uuesti: ");
-            } else System.out.println("Sisesta number!");
-        }
-    }
 
     public Mängija Vali(int valik) {
         uus_mängija.ValiRelv(uus_mängija.getOstetud_relvad().get(valik));
@@ -50,7 +37,7 @@ public class Relva_valimine {
         }
 
         System.out.println("Sisesta relva number, mida soovid valida või välju: ");
-        int valik = Skänner(mängija.getOstetud_relvad().size());
+        int valik = Konsool.skanner(mängija.getOstetud_relvad().size());
         if (valik == 0) {
             return uus_mängija;
         }
@@ -60,7 +47,7 @@ public class Relva_valimine {
             if(mängija.getOstetud_relvad().size() > 1) {
                 System.out.println("Vali 2. relv: ");
                 while (true) {
-                    int relva_nr = Skänner(mängija.getOstetud_relvad().size());
+                    int relva_nr = Konsool.skanner(mängija.getOstetud_relvad().size());
                     if(relva_nr == 0){
                         break;
                     }
@@ -76,7 +63,7 @@ public class Relva_valimine {
             System.out.println("Uued parameetrid: ");
             System.out.println(uus_mängija);
             System.out.println("Menüüsse naasmiseks vajuta '0': ");
-            if(Skänner(0) == 0){return uus_mängija;}
+            if(Konsool.skanner(0) == 0){return uus_mängija;}
             else {return uus_mängija;} //ei jõua selle tingimuslauseni nagunii
         }
     }
