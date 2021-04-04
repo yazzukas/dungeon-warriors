@@ -4,7 +4,7 @@ public class Võitlus {
 
     private static boolean mängibEsimestKorda = true;
 
-    public void võitle(Mängija mängija){
+    public static void võitle(Mängija mängija){
         if(mängibEsimestKorda) {
             sissejuhatusTekst();
             mängibEsimestKorda = false;
