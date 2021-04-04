@@ -2,22 +2,27 @@
 
 public class Peaklass {
 
-    public static Mängija Intro() {
+    public static void introTekst() {
         System.out.println("Tere tulemast mängu X. Mängu alustamiseks vali endale mängija. " +
                 "Valimiseks vajuta vastavat numbri");
         System.out.println("Mängijad:" + "\n" + "1. Tugev Madis \n" + "2. Täpne Legolas \n" + "3. Hiiliv Silver");
         System.out.println("Sisesta mängija number: ");
+    }
+
+    public static Mängija mängijaValik(){
         int valik = Konsool.skanner(3, 1);
         if (valik == 1) return new Mängija(80, 40, 60, "Tugev Madis", 300);
         else if (valik == 2) return new Mängija(60, 85, 40, "Täpne Legolas", 0);
         else return new Mängija(40, 60, 80, "Hiiliv Silver", 0);
-
     }
 
     public static void main(String[] args) {
-        Mängija mängija = Intro();
+        introTekst();
+
+        Mängija mängija = mängijaValik();
         Relva_valimine relva_valimine = new Relva_valimine();
         relva_valimine.määra_intro_mängija(new Mängija(mängija.getTugevus(), mängija.getTäpsus(), mängija.getKaitse(), "baas_statsid", 0));
+
         Pood pood = new Pood();
         Võitlus võitlus = new Võitlus();
 
