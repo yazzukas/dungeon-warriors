@@ -9,7 +9,9 @@ public class Mängija {
         private String nimi;
         private int raha;
         private List<Relv> ostetud_relvad;
-        private List<Relv> kasutuses_relvad;
+        //private List<Relv> kasutuses_relvad;
+        private Relv relv1;
+        private Relv relv2;
 
         public Mängija(int tugevus, int täpsus, int kaitse, String nimi, int raha){
             this.tugevus = tugevus;
@@ -18,7 +20,7 @@ public class Mängija {
             this.nimi = nimi;
             this.raha = raha;
             this.ostetud_relvad = new ArrayList<>();
-            this.kasutuses_relvad = new ArrayList<>();
+            //this.kasutuses_relvad = new ArrayList<>();
         }
 
 
@@ -30,9 +32,11 @@ public class Mängija {
     public List<Relv> getOstetud_relvad() {
         return ostetud_relvad;
     }
-    public List<Relv> getKasutuses_relvad() {
+    /*public List<Relv> getKasutuses_relvad() {
         return kasutuses_relvad;
-    }
+    }*/
+    public Relv getRelv1(){ return relv1; }
+    public Relv getRelv2(){ return relv2; }
 
     public void setTugevus(int tugevus) { this.tugevus = tugevus; }
     public void setTäpsus(int täpsus) { this.täpsus = täpsus; }
@@ -41,16 +45,19 @@ public class Mängija {
     public void setOstetud_relvad(List<Relv> ostetud_relvad) {
         this.ostetud_relvad = ostetud_relvad;
     }
-    public void setKasutuses_relvad(List<Relv> kasutuses_relvad) {
+    /*public void setKasutuses_relvad(List<Relv> kasutuses_relvad) {
         this.kasutuses_relvad = kasutuses_relvad;
-    }
+    }*/
+
+    public void setRelv1(Relv relv1){ this.relv1 = relv1; }
+    public void setRelv2(Relv relv2){ this.relv2 = relv2; }
 
     public void LisaRelv(Relv relv){
         ostetud_relvad.add(relv);
         }
-    public void ValiRelv(Relv relv){
+    /*public void ValiRelv(Relv relv){
         kasutuses_relvad.add(relv);
-        }
+        }*/
 
         public boolean kasVähemaltÜksRelvOnOstetud(){
             if(this.getOstetud_relvad().size() == 0) return false;
@@ -69,7 +76,9 @@ public class Mängija {
                 "Kaitse: " + kaitse + "\n"+
                 "Raha: " + raha + "\n"+
                 "Ostetud relvad: " + ostetud_relvad +
-                "Valitud relvad: "+ kasutuses_relvad;
+                "Põhirelv: " + relv1 +
+                "Teine relv: " + relv2;
+                //"Valitud relvad: "+ kasutuses_relvad;
     }
 }
 
