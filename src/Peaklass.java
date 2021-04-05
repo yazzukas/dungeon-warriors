@@ -18,8 +18,10 @@ public class Peaklass {
         väljastaInformatsioon();
 
         Mängija mängija = mängijaValik();
-        Relva_valimine relva_valimine = new Relva_valimine();
-        relva_valimine.määra_intro_mängija(new Mängija(mängija.getTugevus(), mängija.getTäpsus(), mängija.getKaitse(), "baas_statsid", 0));
+
+        //Kott.ava(mängija);
+        //Relva_valimine relva_valimine = new Relva_valimine();
+        //relva_valimine.määra_intro_mängija(new Mängija(mängija.getTugevus(), mängija.getTäpsus(), mängija.getKaitse(), "baas_statsid", 0));
 
         boolean mängKäib = true;
         while (mängKäib) {
@@ -29,7 +31,7 @@ public class Peaklass {
             int valik = Konsool.skanner(4);
             if (valik == 0) mängKäib = false;
             else if (valik == 1) Pood.sisene(mängija);
-            else if (valik == 2) mängija = relva_valimine.Kuva(mängija);
+            else if (valik == 2) Kott.ava(mängija);
             else if(valik == 3) Võitlus.võitle(mängija);
         }
     }
