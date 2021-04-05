@@ -76,7 +76,7 @@ public class Mängija {
         return relvad;
     }
 
-    public void LisaRelv(Relv relv){
+    public void ostaRelv(Relv relv){
         ostetud_relvad.add(relv);
         }
     /*public void ValiRelv(Relv relv){
