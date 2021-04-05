@@ -35,7 +35,7 @@ public class Pood {
             if (ostetavRelv.getHind() < mängija.getRaha()) {
                 // kasMängijalOnRelvOstetud
                 if (!mängija.kasSeeRelvOnOstetud(ostetavRelv)) {
-                    mängija.LisaRelv(ostetavRelv);
+                    mängija.ostaRelv(ostetavRelv);
                     mängija.setRaha(mängija.getRaha() - ostetavRelv.getHind());
                     System.out.println(ostetavRelv.getNimi() + " on lisatud relvade hulka!");
                     System.out.println("Allesjäänud raha: " + mängija.getRaha());
