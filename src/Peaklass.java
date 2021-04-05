@@ -26,13 +26,14 @@ public class Peaklass {
         boolean mängKäib = true;
         while (mängKäib) {
             System.out.println("MENÜÜ\n" + "Vali tegevus sisestades tegevuse ees olev number:");
-            System.out.println("0. Välju mängust\n" + "1. Pood \n" + "2. Vali relvad\n" + "3. Võitle vastasega \n");
+            System.out.println("0. Välju mängust\n" + "1. Pood \n" + "2. Kott\n" + "3. Võitle vastasega \n" + "4. Näita karakterit \n");
             System.out.println("Vali tegevus: ");
-            int valik = Konsool.skanner(4);
+            int valik = Konsool.skanner(5);
             if (valik == 0) mängKäib = false;
             else if (valik == 1) Pood.sisene(mängija);
             else if (valik == 2) Kott.ava(mängija);
             else if(valik == 3) Võitlus.võitle(mängija);
+            else if(valik == 4) System.out.println(mängija);
         }
     }
 }
