@@ -1,5 +1,4 @@
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,11 @@ public class Mängija {
         }
     public void ValiRelv(Relv relv){
         kasutuses_relvad.add(relv);
+        }
+
+        public boolean kasRelvOnOstetud(){
+            if(this.getOstetud_relvad().size() == 0) return false;
+            return true;
         }
 
     public String toString() {
