@@ -31,12 +31,13 @@ public class Pood {
             int valik = Konsool.skanner(relvadMüügiks.size());
             if (valik == 0) break;
             // kasOnPiisavaltRaha
-            if (relvadMüügiks.get(valik).getHind() < mängija.getRaha()) {
+            Relv ostetavRelv = relvadMüügiks.get(valik - 1);
+            if (ostetavRelv.getHind() < mängija.getRaha()) {
                 // kasMängijalOnRelvOstetud
-                if (!mängija.kasSeeRelvOnOstetud(relvadMüügiks.get(valik))) {
-                    mängija.LisaRelv(relvadMüügiks.get(valik));
-                    mängija.setRaha(mängija.getRaha() - relvadMüügiks.get(valik).getHind());
-                    System.out.println(relvadMüügiks.get(valik).getNimi() + " on lisatud relvade hulka!");
+                if (!mängija.kasSeeRelvOnOstetud(ostetavRelv)) {
+                    mängija.LisaRelv(ostetavRelv);
+                    mängija.setRaha(mängija.getRaha() - ostetavRelv.getHind());
+                    System.out.println(ostetavRelv.getNimi() + " on lisatud relvade hulka!");
                     System.out.println("Allesjäänud raha: " + mängija.getRaha());
                 }
                 else System.out.println("See relv on juba ostetud!");
