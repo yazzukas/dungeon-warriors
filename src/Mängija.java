@@ -49,8 +49,32 @@ public class Mängija {
         this.kasutuses_relvad = kasutuses_relvad;
     }*/
 
-    public void setRelv1(Relv relv1){ this.relv1 = relv1; }
-    public void setRelv2(Relv relv2){ this.relv2 = relv2; }
+    public void võtaKotistRelv(Relv relv, int misRelvaAsendada){
+        if(misRelvaAsendada == 1) setRelv1(relv);
+        else if(misRelvaAsendada == 2) setRelv2(relv);
+    }
+
+    public void setRelv1(Relv relv1)
+    {
+        if(this.relv1 != null) this.relv1.paneKotti();
+        this.relv1 = relv1;
+        this.relv1.võtaKätte();
+    }
+
+    public void setRelv2(Relv relv2)
+    {
+        if(this.relv2 != null) this.relv2.paneKotti();
+        this.relv2 = relv2;
+        this.relv2.võtaKätte();
+    }
+
+    public List<Relv> relvadKotis(){
+        List<Relv> relvad = new ArrayList<>();
+        for (Relv relv : this.getOstetud_relvad()) {
+            if(relv.isKotis()) relvad.add(relv);
+        }
+        return relvad;
+    }
 
     public void LisaRelv(Relv relv){
         ostetud_relvad.add(relv);
@@ -75,9 +99,9 @@ public class Mängija {
                 "Täpsus: " + täpsus + "\n"+
                 "Kaitse: " + kaitse + "\n"+
                 "Raha: " + raha + "\n"+
-                "Ostetud relvad: " + ostetud_relvad +
-                "Põhirelv: " + relv1 +
-                "Teine relv: " + relv2;
+                "Ostetud relvad: " + ostetud_relvad + "\n" +
+                "Põhirelv: " + relv1 + "\n" +
+                "Teine relv: " + relv2 + "\n";
                 //"Valitud relvad: "+ kasutuses_relvad;
     }
 }
