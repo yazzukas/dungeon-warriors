@@ -52,9 +52,14 @@ public class Mängija {
         kasutuses_relvad.add(relv);
         }
 
-        public boolean kasRelvOnOstetud(){
+        public boolean kasVähemaltÜksRelvOnOstetud(){
             if(this.getOstetud_relvad().size() == 0) return false;
             return true;
+        }
+
+        public boolean kasSeeRelvOnOstetud(Relv relv){
+            if(this.getOstetud_relvad().contains(relv)) return true;
+            return false;
         }
 
     public String toString() {
