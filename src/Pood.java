@@ -21,15 +21,19 @@ public class Pood {
         väljastaInformatsioon();
 
         for (int i = 0; i < relvadMüügiks.size(); i++)
-            System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i));
+            if (mängija.kasSeeRelvOnOstetud(relvadMüügiks.get(i)))
+                System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i) + " - See relv on juba ostetud.");
+            else
+                System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i));
 
         while (true) {
             System.out.println("Sisesta relva number, mida soovid osta, või välju poest: ");
             int valik = Konsool.skanner(relvadMüügiks.size());
-            if (valik == 0) break;// kasOnPiisavaltRaha
+            if (valik == 0) break;
+            // kasOnPiisavaltRaha
             if (relvadMüügiks.get(valik).getHind() < mängija.getRaha()) {
                 // kasMängijalOnRelvOstetud
-                if (!mängija.getOstetud_relvad().contains(relvadMüügiks.get(valik))) {
+                if (!mängija.kasSeeRelvOnOstetud(relvadMüügiks.get(valik))) {
                     mängija.LisaRelv(relvadMüügiks.get(valik));
                     mängija.setRaha(mängija.getRaha() - relvadMüügiks.get(valik).getHind());
                     System.out.println(relvadMüügiks.get(valik).getNimi() + " on lisatud relvade hulka!");
