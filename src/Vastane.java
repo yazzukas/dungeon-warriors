@@ -53,7 +53,7 @@ public class Vastane implements Karakter {
     @Override
     public void kaotaElusid(int kaotatudElud) {
         if(kaotatudElud > this.elud) this.elud = 0;
-        this.elud -= kaotatudElud;
+        else this.elud -= kaotatudElud;
     }
 
     @Override

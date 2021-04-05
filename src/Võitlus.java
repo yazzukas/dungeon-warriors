@@ -38,8 +38,8 @@ public class Võitlus {
 
             arvutiKäik(mängija, vastane);
             if(mängija.kasOnElus() == false){
-                System.out.println("Kaotasid võitluse!");
-                System.out.println("Kahjuks said sa surma, kuid tegemist on siiski mänguga ja saad uuesti alustada! :)");
+                System.out.println("Kaotasid võitluse ja said surma!");
+                System.out.println("Tegemist on siiski mänguga ja saad uuesti alustada! :)");
                 //kasVõitlusKäib = false;
                 break;
             }

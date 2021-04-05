@@ -19,15 +19,12 @@ public class Peaklass {
 
         Mängija mängija = mängijaValik();
 
-        //Kott.ava(mängija);
-        //Relva_valimine relva_valimine = new Relva_valimine();
-        //relva_valimine.määra_intro_mängija(new Mängija(mängija.getTugevus(), mängija.getTäpsus(), mängija.getKaitse(), "baas_statsid", 0));
-
         boolean mängKäib = true;
         while (mängKäib) {
             System.out.println("MENÜÜ\n" + "Vali tegevus sisestades tegevuse ees olev number:");
             System.out.println("0. Välju mängust\n" + "1. Pood \n" + "2. Kott\n" + "3. Võitle vastasega \n" + "4. Näita karakterit \n");
             System.out.println("Vali tegevus: ");
+
             int valik = Konsool.skanner(5);
             if (valik == 0) mängKäib = false;
             else if (valik == 1) Pood.sisene(mängija);

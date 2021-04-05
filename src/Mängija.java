@@ -71,7 +71,7 @@ public class Mängija implements Karakter {
     @Override
     public void kaotaElusid(int kaotatudElud) {
         if(kaotatudElud > this.elud) this.elud = 0;
-        this.elud -= kaotatudElud;
+        else this.elud -= kaotatudElud;
     }
 
     public void setRelv1(Relv relv1) {
