@@ -9,12 +9,12 @@ public class Konsool {
         return skaneerima(valikuteArv, esimeneArv);
     }
 
-    public static int skaneerima(int valikuteArv, int esimeneArv) {
+    private static int skaneerima(int valikuteArv, int esimeneArv) {
         while (true) {
             Scanner valik = new Scanner(System.in);
             if (valik.hasNextInt()) {
-                int nr = valik.nextInt();
-                if (nr <= valikuteArv + esimeneArv - 1 && nr >= esimeneArv) return nr;
+                int sisestatudNumber = valik.nextInt();
+                if (sisestatudNumber <= valikuteArv + esimeneArv - 1 && sisestatudNumber >= esimeneArv) return sisestatudNumber;
                 else System.out.println("Sisesta uuesti: ");
             }
             else System.out.println("Sisesta number!");
