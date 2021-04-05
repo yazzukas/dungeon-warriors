@@ -9,9 +9,9 @@ public class Peaklass {
 
     public static Mängija mängijaValik(){
         int valik = Konsool.skanner(3, 1);
-        if (valik == 1) return new Mängija(80, 40, 60, "Tugev Madis", 300);
-        else if (valik == 2) return new Mängija(60, 85, 40, "Täpne Legolas", 0);
-        else return new Mängija(40, 60, 80, "Hiiliv Silver", 0);
+        if (valik == 1) return new Mängija("Tugev Madis",80, 40, 60, 300);
+        else if (valik == 2) return new Mängija("Täpne Legolas",60, 85, 40, 0);
+        else return new Mängija("Hiiliv Silver",40, 60, 80, 0);
     }
 
     public static void main(String[] args) {
@@ -34,6 +34,15 @@ public class Peaklass {
             else if (valik == 2) Kott.ava(mängija);
             else if(valik == 3) Võitlus.võitle(mängija);
             else if(valik == 4) System.out.println(mängija);
+
+            // kas mängija sai võitluses surma
+            if(mängija.kasOnElus() == false) mängKäib = false;
+            // kas on veel vastaseid järgi või kõik on surnud
+            if(Võitlus.kasOnVastaseid() == false){
+                System.out.println("Alistasid kõik vastased ja sinu jaoks on praegu mäng läbi!");
+                System.out.println("Alati saad alustada uue karakteriga ja mängida uuesti!");
+                mängKäib = false;
+            }
         }
     }
 }
