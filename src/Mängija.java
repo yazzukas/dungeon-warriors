@@ -2,27 +2,33 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mängija {
+public class Mängija implements Karakter {
+    private String nimi;
     private int tugevus;
     private int täpsus;
     private int kaitse;
-    private String nimi;
     private int raha;
     private List<Relv> ostetudRelvad;
     //private List<Relv> kasutuses_relvad;
     private Relv relv1;
     private Relv relv2;
+    private int elud;
 
-    public Mängija(int tugevus, int täpsus, int kaitse, String nimi, int raha) {
+    public Mängija(String nimi, int tugevus, int täpsus, int kaitse, int raha) {
+        this.nimi = nimi;
         this.tugevus = tugevus;
         this.täpsus = täpsus;
         this.kaitse = kaitse;
-        this.nimi = nimi;
         this.raha = raha;
+        this.elud = 100;
         this.ostetudRelvad = new ArrayList<>();
         //this.kasutuses_relvad = new ArrayList<>();
     }
 
+    @Override
+    public String getNimi() { return nimi; }
+
+    @Override
     public int getTugevus() {
         int tugevus = this.tugevus;
         if (this.getRelv1() != null) tugevus += this.getRelv1().getTugevus();
@@ -30,6 +36,7 @@ public class Mängija {
         return tugevus;
     }
 
+    @Override
     public int getTäpsus() {
         int täpsus = this.täpsus;
         if (this.getRelv1() != null) täpsus += this.getRelv1().getTäpsus();
@@ -37,6 +44,7 @@ public class Mängija {
         return täpsus;
     }
 
+    @Override
     public int getKaitse() {
         int kaitse = this.kaitse;
         if (this.getRelv1() != null) kaitse += this.getRelv1().getKaitse();
@@ -44,26 +52,26 @@ public class Mängija {
         return kaitse;
     }
 
-    public String getNimi() { return nimi; }
+    @Override
+    public int getElud() {
+        return elud;
+    }
+
+    @Override
+    public boolean kasOnElus() {
+        if(this.elud > 0) return true;
+        return false;
+    }
+
     public int getRaha() { return raha; }
     public List<Relv> getOstetudRelvad() { return ostetudRelvad; }
-    /*public List<Relv> getKasutuses_relvad() { return kasutuses_relvad; }*/
     public Relv getRelv1() { return relv1; }
     public Relv getRelv2() { return relv2; }
-    public void setTugevus(int tugevus) { this.tugevus = tugevus; }
-    public void setTäpsus(int täpsus) { this.täpsus = täpsus; }
-    public void setKaitse(int kaitse) { this.kaitse = kaitse; }
-    public void setRaha(int raha) { this.raha = raha; }
-    /*public void setOstetud_relvad(List<Relv> ostetud_relvad) {
-        this.ostetud_relvad = ostetud_relvad;
-    }
-    public void setKasutuses_relvad(List<Relv> kasutuses_relvad) {
-        this.kasutuses_relvad = kasutuses_relvad;
-    }*/
 
-    public void võtaKotistRelv(Relv relv, int misRelvaAsendada) {
-        if (misRelvaAsendada == 1) setRelv1(relv);
-        else if (misRelvaAsendada == 2) setRelv2(relv);
+    @Override
+    public void kaotaElusid(int kaotatudElud) {
+        if(kaotatudElud > this.elud) this.elud = 0;
+        this.elud -= kaotatudElud;
     }
 
     public void setRelv1(Relv relv1) {
@@ -76,6 +84,14 @@ public class Mängija {
         if (this.relv2 != null) this.relv2.paneKotti();
         this.relv2 = relv2;
         this.relv2.võtaKätte();
+    }
+
+    public void võtaRaha(int raha) { this.raha -= raha; }
+    public void annaRaha(int raha) { this.raha += raha; }
+
+    public void võtaKotistRelv(Relv relv, int misRelvaAsendada) {
+        if (misRelvaAsendada == 1) setRelv1(relv);
+        else if (misRelvaAsendada == 2) setRelv2(relv);
     }
 
     public List<Relv> relvadKotis() {
