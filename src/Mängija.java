@@ -13,6 +13,7 @@ public class Mängija implements Karakter {
     private Relv relv1;
     private Relv relv2;
     private int elud;
+    private boolean võitlusKaitseb;
 
     public Mängija(String nimi, int tugevus, int täpsus, int kaitse, int raha) {
         this.nimi = nimi;
@@ -63,6 +64,12 @@ public class Mängija implements Karakter {
         return false;
     }
 
+    public boolean isVõitlusKaitseb() { return võitlusKaitseb; }
+
+    public void setVõitlusKaitseb(boolean võitlusKaitseb) {
+        this.võitlusKaitseb = võitlusKaitseb;
+    }
+
     public int getRaha() { return raha; }
     public List<Relv> getOstetudRelvad() { return ostetudRelvad; }
     public Relv getRelv1() { return relv1; }
@@ -103,9 +110,6 @@ public class Mängija implements Karakter {
     }
 
     public void ostaRelv(Relv relv) { ostetudRelvad.add(relv); }
-    /*public void ValiRelv(Relv relv){
-        kasutuses_relvad.add(relv);
-        }*/
 
     public boolean kasVähemaltÜksRelvOnOstetud() {
         if (this.getOstetudRelvad().size() == 0) return false;
@@ -125,7 +129,7 @@ public class Mängija implements Karakter {
                 "Raha: " + raha + "\n" +
                 "Põhirelv: " + relv1 + "\n" +
                 "Teine relv: " + relv2 + "\n" +
-                "Ostetud relvad: " + ostetudRelvad + "\n";
+                "Ostetud relvad: " + ostetudRelvad;
         //"Valitud relvad: "+ kasutuses_relvad;
     }
 }

@@ -5,6 +5,7 @@ public class Vastane implements Karakter {
     private int kaitse;
     private int elud;
     private int auhind;
+    private boolean võitlusKaitseb;
 
     public Vastane(String nimi, int tugevus, int täpsus, int kaitse, int auhind) {
         this.nimi = nimi;
@@ -44,6 +45,14 @@ public class Vastane implements Karakter {
     public boolean kasOnElus() {
         if(this.elud > 0) return true;
         return false;
+    }
+
+    public boolean isVõitlusKaitseb() {
+        return võitlusKaitseb;
+    }
+
+    public void setVõitlusKaitseb(boolean võitlusKaitseb) {
+        this.võitlusKaitseb = võitlusKaitseb;
     }
 
     public int getAuhind() {

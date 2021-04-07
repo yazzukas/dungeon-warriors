@@ -1,6 +1,19 @@
 import java.util.Scanner;
 
 public class Konsool {
+
+    public static void ootaEnterVajutamist(){
+        System.out.println("---------------------------------------");
+        System.out.println("Vajuta ENTER nuppu, et liikuda EDASI!");
+        Scanner s = new Scanner(System.in);
+        s.nextLine();
+    }
+
+    public static void tühjadRead(int ridadeArv){
+        for (int i = 0; i < ridadeArv; i++)
+            System.out.println();
+    }
+
     public static int skanner(int valikuteArv) {
         return skaneerima(valikuteArv, 0);
     }

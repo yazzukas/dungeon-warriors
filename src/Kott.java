@@ -1,11 +1,13 @@
 public class Kott {
 
     private static void väljastaInformatsioon() {
-        System.out.println("Siin on võimalik valida oma ostetud relvade vahel. Kokku on võimalik " +
-                "valida kaks  relva, mis parandavad mängija parameetreid");
+        System.out.println("Siin on võimalik valida oma ostetud relvade vahel.");
+        System.out.println("Kokku on võimalik valida kaks  relva, mis parandavad mängija parameetreid");
     }
 
     private static void kuvaRelvad(Mängija mängija) {
+        System.out.println("Sisesta relva number, mida soovid kotist valida: ");
+        System.out.println("0. Välju");
         for (int i = 0; i < mängija.relvadKotis().size(); i++) {
             System.out.println(String.valueOf(i + 1) + ". " + mängija.relvadKotis().get(i));
         }
@@ -14,12 +16,19 @@ public class Kott {
     public static void ava(Mängija mängija) {
         if (mängija.kasVähemaltÜksRelvOnOstetud()) {
             väljastaInformatsioon();
+            System.out.println();
+            System.out.println("Praegused kasutused olevad relvad: ");
+            System.out.println(mängija.getRelv1());
+            System.out.println(mängija.getRelv2());
+            System.out.println();
             kuvaRelvad(mängija);
 
             boolean valibRelva = true;
             while(valibRelva){
-                System.out.println("0. Välju");
-                System.out.println("Sisesta relva number, mida soovid kotist valida: ");
+                System.out.println();
+                System.out.println(mängija.getRelv1());
+                System.out.println(mängija.getRelv2());
+                System.out.println();
                 int valik = Konsool.skanner(mängija.relvadKotis().size() + 1);
                 if (valik == 0) valibRelva = false;
                 else {
@@ -47,5 +56,6 @@ public class Kott {
             }
         }
         else System.out.println("Sul ei ole ostetud relvi! Mine poodi ja osta üks!");
+        Konsool.tühjadRead(10);
     }
 }
