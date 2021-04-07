@@ -1,17 +1,14 @@
-import java.util.Arrays;
 import java.util.List;
 
 public class Pood {
 
-    private static List<Relv> relvadMüügiks = Arrays.asList(
-            new Relv(10, 5, 2, "Pistoda", 30),
-            new Relv(5, 10, 2, "Vibu", 60),
-            new Relv(1, 1, 15, "Puidust kilp", 100),
-            new Relv(20, 10, 5, "Mõõk", 150),
-            new Relv(5, 20, 10, "Amb", 150),
-            new Relv(10, 5, 20, "Rauast kilp", 200));
+    private List<Relv> relvadMüügiks;
 
-    private static void väljastaInformatsioon() {
+    public Pood(List<Relv> relvadMüügiks) {
+        this.relvadMüügiks = relvadMüügiks;
+    }
+
+    private void väljastaInformatsioon() {
         System.out.println("Tere tulemast poodi.");
         System.out.println("Siit on võimalik osta relvi, mis muudavad mängija paremaks.");
         System.out.println("Ostmiseks sisesta relva ees olev number!\n");
@@ -19,31 +16,31 @@ public class Pood {
         System.out.println("0. Välju poest");
     }
 
-    public static void sisene(Mängija mängija) {
+    public void sisene(Mängija mängija) {
         väljastaInformatsioon();
 
-        for (int i = 0; i < relvadMüügiks.size(); i++)
-            if (mängija.kasSeeRelvOnOstetud(relvadMüügiks.get(i)))
+        /*for (int i = 0; i < relvadMüügiks.size(); i++)
+            if (mängija.getKott().kasSeeRelvOnKotis(relvadMüügiks.get(i)))
                 System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i) + " - See relv on juba ostetud.");
             else
                 System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i));
+            System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i));*/
 
-        while (true) {
+        while (relvadMüügiks.size() > 0) {
+            for (int i = 0; i < relvadMüügiks.size(); i++)
+                System.out.println(String.valueOf(i + 1) + ". " + relvadMüügiks.get(i));
             System.out.println("\nSinu raha:" + mängija.getRaha());
             System.out.println("\nSisesta relva number, mida soovid osta: ");
-            int valik = Konsool.skanner(relvadMüügiks.size());
+            int valik = Konsool.skanner(relvadMüügiks.size() + 1);
             if (valik == 0) break;
-            // kasOnPiisavaltRaha
+
             Relv ostetavRelv = relvadMüügiks.get(valik - 1);
             if (ostetavRelv.getHind() < mängija.getRaha()) {
-                // kasMängijalOnRelvOstetud
-                if (!mängija.kasSeeRelvOnOstetud(ostetavRelv)) {
-                    mängija.ostaRelv(ostetavRelv);
-                    mängija.võtaRaha(ostetavRelv.getHind());
-                    System.out.println(ostetavRelv.getNimi() + " on lisatud ostetud relvade hulka!");
-                    System.out.println("Allesjäänud raha: " + mängija.getRaha());
-                }
-                else System.out.println("See relv on juba ostetud!");
+                mängija.getKott().lisaRelv(ostetavRelv);
+                mängija.võtaRaha(ostetavRelv.getHind());
+                System.out.println(ostetavRelv.getNimi() + " on lisatud ostetud relvade hulka!");
+                System.out.println("Allesjäänud raha: " + mängija.getRaha());
+                relvadMüügiks.remove(ostetavRelv);
             }
             else System.out.println("Sul pole selle relva jaoks piisavalt raha!");
         }
