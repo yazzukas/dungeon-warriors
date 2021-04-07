@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Peaklass {
 
-    private static List<Mängija> mängijaValikud = Arrays.asList(
+    private final static List<Mängija> mängijaValikud = Arrays.asList(
             new Mängija("Tugev Madis",80, 40, 60, 1000),
             new Mängija("Täpne Legolas",60, 80, 40, 10),
             new Mängija("Hiiliv Silver",40, 60, 80, 10));
 
-    private static List<Vastane> vastased = Arrays.asList(
+    private final static List<Vastane> vastased = Arrays.asList(
             new Vastane("Oskar", 10, 5, 10, 25),
             new Vastane("Leo", 25, 20, 5, 50),
             new Vastane("Voldemar", 25, 30, 20, 75),
@@ -17,7 +17,7 @@ public class Peaklass {
             new Vastane("Jakob", 80, 50, 20, 150),
             new Vastane("Karl",100, 125, 75, 300));
 
-    private static List<Relv> relvadMüügiks = new ArrayList<Relv>(Arrays.asList(
+    private final static List<Relv> relvadMüügiks = new ArrayList<Relv>(Arrays.asList(
             new Relv(10, 5, 2, "Pistoda", 30),
             new Relv(5, 10, 2, "Vibu", 60),
             new Relv(1, 1, 15, "Puidust kilp", 100),

@@ -14,9 +14,9 @@ public abstract class Karakter {
     }
 
     String getNimi() { return nimi; }
-    int getTugevus() { return tugevus; }
-    int getTäpsus() { return täpsus; }
-    int getKaitse() { return kaitse; }
+    abstract int getTugevus();
+    abstract int getTäpsus();
+    abstract int getKaitse();
     int getElud() { return elud; }
 
     boolean kasOnElus() {

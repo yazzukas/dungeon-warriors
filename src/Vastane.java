@@ -6,6 +6,10 @@ public class Vastane extends Karakter {
         this.auhind = auhind;
     }
 
+    public int getTugevus() { return täpsus; }
+    public int getTäpsus() { return täpsus; }
+    public int getKaitse() { return kaitse; }
+
     public int getAuhind() { return auhind; }
 
     public String toString() {
