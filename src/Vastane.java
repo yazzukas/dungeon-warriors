@@ -6,15 +6,19 @@ public class Vastane extends Karakter {
         this.auhind = auhind;
     }
 
+    @Override
     public int getTugevus() { return täpsus; }
+    @Override
     public int getTäpsus() { return täpsus; }
+    @Override
     public int getKaitse() { return kaitse; }
 
     public int getAuhind() { return auhind; }
 
+    @Override
     public String toString() {
         return "Vastane{" +
-                "nimi='" + nimi + '\'' +
+                "nimi='" + getNimi() + '\'' +
                 ", tugevus=" + tugevus +
                 ", täpsus=" + täpsus +
                 ", kaitse=" + kaitse +

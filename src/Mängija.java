@@ -1,19 +1,23 @@
 public class Mängija extends Karakter {
     private int raha;
     private Kott kott;
+    // mängijal saab olla korraga käes/kasutuses 2 relva
     private Relv relv1;
     private Relv relv2;
 
     public Mängija(String nimi, int tugevus, int täpsus, int kaitse, int raha) {
         super(nimi, tugevus, täpsus, kaitse);
         this.raha = raha;
-        this.kott = new Kott();
+        this.kott = new Kott(this);
     }
 
     public Kott getKott(){
         return this.kott;
     }
 
+    // iga relv annab mängija oskustele(tugevus, täpsus, kaitse) juurde relva enda oskused
+
+    @Override
     public int getTugevus() {
         int tugevus = this.tugevus;
         if (this.getRelv1() != null) tugevus += this.getRelv1().getTugevus();
@@ -21,6 +25,7 @@ public class Mängija extends Karakter {
         return tugevus;
     }
 
+    @Override
     public int getTäpsus() {
         int täpsus = this.täpsus;
         if (this.getRelv1() != null) täpsus += this.getRelv1().getTäpsus();
@@ -28,6 +33,7 @@ public class Mängija extends Karakter {
         return täpsus;
     }
 
+    @Override
     public int getKaitse() {
         int kaitse = this.kaitse;
         if (this.getRelv1() != null) kaitse += this.getRelv1().getKaitse();
@@ -36,7 +42,6 @@ public class Mängija extends Karakter {
     }
 
     public int getRaha() { return raha; }
-    //public List<Relv> getOstetudRelvad() { return ostetudRelvad; }
     public Relv getRelv1() { return relv1; }
     public Relv getRelv2() { return relv2; }
 
@@ -46,8 +51,20 @@ public class Mängija extends Karakter {
     public void võtaRaha(int raha) { this.raha -= raha; }
     public void saaRaha(int raha) { this.raha += raha; }
 
+    @Override
     public String toString() {
-        return "Mängija nimi: " + nimi + "\n" +
+        return super.toString() +
+                "Tugevus: " + tugevus + " | Relvadega koos tugevus: " + this.getTugevus() + "\n" +
+                "Täpsus: " + täpsus + " | Relvadega koos täpsus: " + this.getTäpsus() + "\n" +
+                "Kaitse: " + kaitse + " | Relvadega koos kaitse: " + this.getKaitse() + "\n" +
+                "Raha: " + raha + "\n" +
+                "Esimene relv: " + relv1 + "\n" +
+                "Teine relv: " + relv2 + "\n" +
+                "Kott: " + getKott().getRelvad() + "\n";
+    }
+
+    /*public String toString() {
+        return "Mängija nimi: " + getNimi() + "\n" +
                 "Tugevus: " + tugevus + " | Relvadega koos tugevus: " + this.getTugevus() + "\n" +
                 "Täpsus: " + täpsus + " | Relvadega koos täpsus: " + this.getTäpsus() + "\n" +
                 "Kaitse: " + kaitse + " | Relvadega koos kaitse: " + this.getKaitse() + "\n" +
@@ -55,8 +72,7 @@ public class Mängija extends Karakter {
                 "Esimene relv: " + relv1 + "\n" +
                 "Teine relv: " + relv2 + "\n" +
                 "Ostetud relvad: " + kott.getRelvad();
-        //"Valitud relvad: "+ kasutuses_relvad;
-    }
+    }*/
 }
 
 
