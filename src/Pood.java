@@ -35,7 +35,7 @@ public class Pood {
             int valik = Konsool.skanner(relvadMüügiks.size() + 1);
             if (valik == 0) break;
 
-            Relv ostetavRelv = relvadMüügiks.get(valik - 1);
+            Relv ostetavRelv = relvadMüügiks.get(valik);
 
             // kas mängijal on piisavalt raha
             if (ostetavRelv.getHind() < mängija.getRaha()) {
