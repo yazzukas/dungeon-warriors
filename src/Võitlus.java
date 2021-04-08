@@ -1,63 +1,50 @@
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Võitlus {
 
-    private static List<Vastane> vastased = Arrays.asList(
-            new Vastane("Oskar", 10, 5, 10, 25),
-            new Vastane("Leo", 25, 20, 5, 50),
-            new Vastane("Voldemar", 25, 30, 20, 75),
-            new Vastane("Vambola",25, 40, 35, 100),
-            new Vastane("Jakob", 80, 50, 20, 150),
-            new Vastane("Karl",100, 125, 75, 300));
+    // 1. Tugev löök - Täpsus ja Kaitse on 2 korda kehvemad | löögiTugevus /= 2; mängijaKaitse /= 2;
+    // 2. Täpne löök - Tugevus ja Kaitse on 2 korda kehvemad | löögiTäpsus /= 2; mängijaKaitse /= 2;
+    // 3. Kaitsev löök - Tugevus ja Täpsus on 2 korda kehvemad | löögiTugevus /= 2; löögiTäpsus /= 2;
 
-    private static int tase = 0;
+    // igast oskusest võetakse random meetodiga suvaline väärtus
+    // näiteks: mängija tugevus on 80, siis random võtab 0 kuni 80 suvalise arvu ja lisab selle löögiTugevus väärtuseks
+    // Mängija löögi tugevus =  löögiTugevus + löögiTäpsus - vastaseKaitse;
 
-    private static boolean mängibEsimestKorda = true;
+    private Mängija mängija;
+    private Vastane vastane;
 
-    public static void võitle(Mängija mängija){
-        if(mängibEsimestKorda) {
-            väljastaInformatsioon();
-            mängibEsimestKorda = false;
-        }
+    private boolean kasMängijaKaitseb = false;
+    private boolean kasVastaneKaitseb = false;
 
-        Vastane vastane = vastased.get(tase);
-        //System.out.println(vastane);
-        System.out.println("\nSinu vastaseks on " + vastane.getNimi());
+    public Võitlus(Mängija mängija, Vastane vastane) {
+        this.mängija = mängija;
+        this.vastane = vastane;
+    }
+
+    public void võitle(){
+        System.out.println("\nSinu vastaseks on " + vastane.getNimi() + ".");
         System.out.println("Külas räägitakse, et tema tugevus on " + vastane.getTugevus() +
                 ", täpsus " + vastane.getTäpsus() + " ja kaitse " + vastane.getKaitse() + ".\n");
 
-        //boolean kasVõitlusKäib = true;
-        //while(kasVõitlusKäib){
-
         while(true){
-            mängjaKäik(mängija, vastane);
+            mängjaKäik();
             if(vastane.kasOnElus() == false){
-                mängija.annaRaha(vastane.getAuhind());
+                mängija.saaRaha(vastane.getAuhind());
                 System.out.println("Võitsid võitluse!");
                 System.out.println("Said juurde " + vastane.getAuhind() + " münti.");
-                //kasVõitlusKäib = false;
-                tase++;
                 break;
             }
 
-            arvutiKäik(mängija, vastane);
+            arvutiKäik();
             if(mängija.kasOnElus() == false){
                 System.out.println("Kaotasid võitluse ja said surma!");
                 System.out.println("Tegemist on siiski mänguga ja saad uuesti alustada! :)");
-                //kasVõitlusKäib = false;
                 break;
             }
         }
     }
 
-    public static boolean kasOnVastaseid(){
-        if(tase > vastased.size()) return false;
-        return true;
-    }
-
-    private static void mängjaKäik(Mängija mängija, Vastane vastane){
+    private void mängjaKäik(){
         int löögiTugevus = ThreadLocalRandom.current().nextInt(mängija.getTugevus());
         int löögiTäpsus = ThreadLocalRandom.current().nextInt(mängija.getTäpsus());
         int vastaseKaitse = ThreadLocalRandom.current().nextInt(vastane.getKaitse());
@@ -71,10 +58,10 @@ public class Võitlus {
         else if(tegevus == 3) {
             löögiTäpsus /= 2;
             löögiTugevus /= 2;
-            mängija.setVõitlusKaitseb(true);
+            kasMängijaKaitseb = true;
         }
 
-        if(vastane.isVõitlusKaitseb() == false) vastaseKaitse /= 2;
+        if(kasVastaneKaitseb == false) vastaseKaitse /= 2;
 
         int löök = löögiTugevus + löögiTäpsus - vastaseKaitse;
         if(löök > 0) {
@@ -84,7 +71,7 @@ public class Võitlus {
         else System.out.println("Vastane suutis blokeerida sinu löögi, elusid järel " + mängija.getElud());
     }
 
-    private static void arvutiKäik(Mängija mängija, Vastane vastane){
+    private void arvutiKäik(){
         int löögiTugevus = ThreadLocalRandom.current().nextInt(vastane.getTugevus());
         int löögiTäpsus = ThreadLocalRandom.current().nextInt(vastane.getTäpsus());
         int mängijaKaitse = ThreadLocalRandom.current().nextInt(mängija.getKaitse());
@@ -96,10 +83,10 @@ public class Võitlus {
         else if(tegevus == 3){
             löögiTäpsus /= 2;
             löögiTugevus /= 2;
-            vastane.setVõitlusKaitseb(true);
+            kasVastaneKaitseb = true;
         }
 
-        if(mängija.isVõitlusKaitseb() == false) mängijaKaitse /= 2;
+        if(kasMängijaKaitseb == false) mängijaKaitse /= 2;
 
         int löök = löögiTugevus + löögiTäpsus - mängijaKaitse;
         if(löök > 0) {
@@ -109,7 +96,7 @@ public class Võitlus {
         else System.out.println("Suutsid blokeerida vastase löögi, elusid järel " + mängija.getElud());
     }
 
-    private static void väljastaInformatsioon(){
+    public void väljastaInformatsioon(){
         System.out.println("Teretulemast võitlusareenile!\n");
         System.out.println("Siin saad võidelda vastastega ning võitmise eest saad vastu raha.");
         System.out.println("Ole ettevaatlik! Kaotus tähendab, et sinu karakter sureb ning pead mängu uuesti alustama.\n");
