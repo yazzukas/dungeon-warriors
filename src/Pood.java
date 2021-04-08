@@ -32,7 +32,7 @@ public class Pood {
             System.out.println("\nSinu raha: " + mängija.getRaha());
             System.out.println("\nSisesta relva number, mida soovid osta: ");
 
-            int valik = Konsool.skanner(relvadMüügiks.size() + 1);
+            int valik = Konsool.skanner(relvadMüügiks.size());
             if (valik == 0) break;
 
             Relv ostetavRelv = relvadMüügiks.get(valik);
